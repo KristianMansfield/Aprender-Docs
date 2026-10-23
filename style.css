@@ -1,0 +1,107 @@
+/* Shared styles for the Aprender website (marketing, support and privacy pages).
+   Colours match the app's theme in mobile/src/theme/index.ts. */
+
+:root {
+  --bg: #F7F5F0;
+  --surface: #FFFFFF;
+  --text: #1C1B19;
+  --muted: #6B6862;
+  --border: #E3DFD6;
+  --primary: #C2410C;
+  --red: #E90F00;
+  --yellow: #F7CB49;
+  --radius: 20px;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151413;
+    --surface: #22201E;
+    --text: #F3F1EC;
+    --muted: #A29E96;
+    --border: #36332F;
+    --primary: #F97316;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--primary); text-underline-offset: 2px; }
+
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+.narrow { max-width: 720px; }
+
+/* Header and footer */
+.site-header { padding: 20px 0; }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 800; font-size: 20px; }
+.brand img { width: 36px; height: 36px; }
+.site-nav { display: flex; gap: 20px; font-size: 15px; }
+.site-nav a { color: var(--muted); text-decoration: none; font-weight: 600; }
+.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--text); }
+
+.site-footer { margin-top: 80px; padding: 32px 0 48px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+.site-footer .wrap { display: flex; flex-direction: column; gap: 8px; }
+.site-footer a { color: var(--muted); }
+
+/* The logo's red-over-yellow bar */
+.accent { display: block; width: 64px; height: 18px; margin: 20px 0 24px; position: relative; }
+.accent::before, .accent::after { content: ""; position: absolute; left: 0; height: 7px; border-radius: 4px; }
+.accent::before { top: 0; width: 100%; background: var(--red); }
+.accent::after { top: 10px; width: 60%; background: var(--yellow); }
+.center .accent { margin-left: auto; margin-right: auto; }
+
+/* Marketing hero */
+.hero { padding: 56px 0 24px; text-align: center; }
+.hero .icon { width: 120px; height: 120px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15); border-radius: 27px; }
+.hero h1 { font-size: clamp(40px, 7vw, 64px); line-height: 1.05; letter-spacing: -0.02em; margin: 28px 0 0; }
+.hero .lede { font-size: clamp(19px, 2.6vw, 23px); color: var(--muted); max-width: 640px; margin: 0 auto; }
+.badge { display: inline-block; margin-top: 28px; padding: 12px 22px; border-radius: 999px; background: var(--text); color: var(--bg); font-weight: 700; font-size: 15px; text-decoration: none; }
+
+/* Phone screenshots */
+.phones { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding: 40px 0 16px; }
+.phone { margin: 0; min-width: 0; }
+.phone img { display: block; width: 100%; height: auto; border-radius: 30px; border: 7px solid #181818; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18); background: #181818; }
+.phone figcaption { text-align: center; color: var(--muted); font-size: 14px; margin-top: 12px; }
+
+/* Feature grid */
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 48px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.card h3 { margin: 0 0 6px; font-size: 18px; }
+.card p { margin: 0; color: var(--muted); font-size: 16px; }
+
+h2.section { font-size: 30px; letter-spacing: -0.01em; margin: 72px 0 0; text-align: center; }
+
+/* Document pages (support, privacy) */
+.doc { padding: 40px 0 0; }
+.doc h1 { font-size: clamp(34px, 6vw, 46px); line-height: 1.1; letter-spacing: -0.02em; margin: 0; }
+.doc .meta { color: var(--muted); margin: 0; }
+.doc h2 { font-size: 22px; margin: 40px 0 8px; }
+.doc p, .doc li { color: var(--text); }
+.doc ul { padding-left: 22px; }
+
+.callout { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; }
+.callout p { margin: 0; }
+
+details { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 4px 20px; margin: 10px 0; }
+summary { cursor: pointer; font-weight: 650; padding: 12px 0; }
+details p { margin: 0 0 14px; color: var(--muted); }
+
+@media (max-width: 720px) {
+  .phones { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .phone img { border-width: 5px; border-radius: 22px; }
+}
+
+/* Long email addresses and links wrap instead of widening the page */
+p, li, summary { overflow-wrap: anywhere; }
